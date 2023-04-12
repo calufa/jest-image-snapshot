@@ -232,7 +232,9 @@ function diffImageToSnapshot(options) {
     result = { added: true };
   } else {
     const receivedSnapshotPath = path.join(receivedDir, `${snapshotIdentifier}${receivedPostfix}.png`);
-    rimraf.sync(receivedSnapshotPath);
+    if (receivedPostfix !== '') {
+      rimraf.sync(receivedSnapshotPath);
+    }
 
     const diffOutputPath = path.join(diffDir, `${snapshotIdentifier}-diff.png`);
     rimraf.sync(diffOutputPath);
